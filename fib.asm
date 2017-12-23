@@ -1,5 +1,5 @@
 section .data
-num1: dd 10, 20, 30, 40, 50, 10, 20, 30, 40, 100,300
+num1: dd 1, 1
 total: dd 0
 msg :  dd "sum=%d",10,0
 
@@ -13,11 +13,17 @@ msg :  dd "sum=%d",10,0
         mov ecx,11     ;load count of numbers in ecx
         mov eax,0       ;initialize sum to zero
     loop:
-        add eax,[ebx]
-        add ebx,4
-        sub ecx,1
+		mov eax, [ebx+4]
+		add eax, [ebx]
+        mov [ebx+4],eax
+        mov eax,[ebx+4]
+        sub eax,[ebx]
+        sub [ebx],eax
+		sub ecx,1
         jnz loop
-        mov  [total],eax
+		
+        mov eax, [ebx+4]
+		mov  [total],eax
         push dword [total]
 
         push msg
