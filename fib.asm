@@ -16,9 +16,8 @@ msg :  dd "sum=%d",10,0
 		mov eax, [ebx+4]
 		add eax, [ebx]
         mov [ebx+4],eax
-        mov eax,[ebx+4]
         sub eax,[ebx]
-        sub [ebx],eax
+        mov [ebx],eax
 		sub ecx,1
         jnz loop
 		
